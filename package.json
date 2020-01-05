@@ -4,6 +4,8 @@
   "description": "LineBot",
   "main": "app.js",
   "dependencies": {
+    "@line/bot-sdk": "^6.8.4",
+    "express": "^4.17.1",
     "linebot": "^1.5.3"
   },
   "devDependencies": {},
