@@ -2,7 +2,7 @@
   "name": "linebot",
   "version": "1.0.0",
   "description": "LineBot",
-  "main": "app.js",
+  "main": "msgApp.js",
   "dependencies": {
     "@line/bot-sdk": "^6.8.4",
     "express": "^4.17.1",
@@ -10,7 +10,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node msgApp.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/zhan16061/LineBot/issues"
   },
-  "homepage": "https://github.com/zhan16061/LineBot#readme"
+  "homepage": "https://github.com/zhan16061/LineBot#readme",
+  "engines": {
+    "node": "10.15.3"
+  }
 }
