@@ -48,7 +48,7 @@ function handleEvent (event) {
     // const returnObj = { type: 'text', text: event.message.text }
     return client.replyMessage(event.replyToken, returnObj)
   } catch (error) {
-    console.log(error)
+    console.log('occur error:', error)
   }
   
 }
