@@ -21,6 +21,8 @@ function handleEvent (event) {
   if (event.type !== 'message' || event.message.type !== 'text') {
     return Promise.resolve(null)
   }
+  const returnObj = { type: 'text', text: event.message.text || 'default text' }
+  return client.replyMessage(event.replyToken, returnObj)
 
   const nameMap = {
     '信翰': 'shin',
@@ -44,7 +46,7 @@ function handleEvent (event) {
     'previewImageUrl': preUrl
   }
   console.log(returnObj)
-  // const returnObj = { type: 'text', text: event.message.text }
+  const returnObj = { type: 'text', text: event.message.text }
   return client.replyMessage(event.replyToken, returnObj)
 }
 
