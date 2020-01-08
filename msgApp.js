@@ -2,12 +2,11 @@
 const line = require('@line/bot-sdk')
 const express = require('express')
 
-var configSet = require('./config')
 var photoUrl = require('./photo-url')
 
 const config = {
-  channelAccessToken: configSet.CHANNEL_ACCESS_TOKEN,
-  channelSecret: configSet.CHANNEL_SECRET
+  channelSecret: process.env.CHANNEL_SECRET,
+  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
 }
 
 const app = express()
