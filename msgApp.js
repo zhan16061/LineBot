@@ -1,7 +1,7 @@
 
 const line = require('@line/bot-sdk')
 const express = require('express')
-
+require('dotenv').config();
 var photoUrl = require('./photo-url')
 
 const config = {
@@ -21,33 +21,36 @@ function handleEvent (event) {
   if (event.type !== 'message' || event.message.type !== 'text') {
     return Promise.resolve(null)
   }
-  const returnObj = { type: 'text', text: event.message.text || 'default text' }
-  return client.replyMessage(event.replyToken, returnObj)
+  try {
+    const nameMap = {
+      '信翰': 'shin',
+      '小寺': 'bart',
+      '燦廷': 'louis',
+      '阿展': 'zhan',
+      '郭家': 'ken'
+    }
+    const chatText = event.message.text
+    const personalKey = nameMap[chatText]
 
-  const nameMap = {
-    '信翰': 'shin',
-    '小寺': 'bart',
-    '燦廷': 'louis',
-    '阿展': 'zhan',
-    '郭家': 'ken'
+    if (!personalKey) return Promise.resolve(null)
+
+    const personPhoto = photoUrl[personalKey]
+    const personPhotoLength = personPhoto.org.length
+    const randomNum = Math.floor(Math.random() * personPhotoLength)
+    const preUrl = personPhoto.pre[randomNum]
+    const orgUrl = personPhoto.org[randomNum]
+
+    const returnObj = {
+      'type': 'image',
+      'originalContentUrl': orgUrl,
+      'previewImageUrl': preUrl
+    }
+    // const returnObj = { type: 'text', text: event.message.text }
+    return client.replyMessage(event.replyToken, returnObj)
+  } catch (error) {
+    console.log(error)
   }
-  const chatText = event.message.text
-  const personalKey = nameMap[chatText]
-
-  const personPhoto = photoUrl[personalKey]
-  const personPhotoLength = personPhoto.org.length
-  const randomNum = Math.floor(Math.random() * personPhotoLength)
-  const preUrl = personPhoto.pre[randomNum]
-  const orgUrl = personPhoto.org[randomNum]
-
-  const returnObj = {
-    'type': 'image',
-    'originalContentUrl': orgUrl,
-    'previewImageUrl': preUrl
-  }
-  console.log(returnObj)
-  const returnObj = { type: 'text', text: event.message.text }
-  return client.replyMessage(event.replyToken, returnObj)
+  
 }
 
 app.listen(process.env.PORT || 3000)
