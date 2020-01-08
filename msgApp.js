@@ -48,4 +48,4 @@ function handleEvent (event) {
   return client.replyMessage(event.replyToken, returnObj)
 }
 
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
