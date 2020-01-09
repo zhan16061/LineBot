@@ -52,6 +52,8 @@ function handleEvent (event) {
   }
 }
 
-app.listen(process.env.PORT || 3000, function () {
-  console.log('App now running on port', this.address().port)
+const PORT = process.env.PORT || 3000
+
+app.listen(PORT, function () {
+  console.log('App now running on port', PORT)
 })
