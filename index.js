@@ -1,7 +1,7 @@
 
 const line = require('@line/bot-sdk')
 const express = require('express')
-require('dotenv').config();
+require('dotenv').config()
 var photoUrl = require('./photo-url')
 
 const config = {
@@ -50,7 +50,8 @@ function handleEvent (event) {
   } catch (error) {
     console.log('occur error:', error)
   }
-  
 }
 
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 3000, function () {
+  console.log('App now running on port', this.address().port)
+})
